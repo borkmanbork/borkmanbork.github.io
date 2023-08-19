@@ -1,115 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timers Page</title>
-    <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    .timer-container {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .timer {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin: 10px;
-      text-align: center;
-    }
-    .timer-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 5px;
-    }
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timers Page</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            margin: 0;
+            color: #d2b48c;
+        }
+        .timer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .timer {
+            background-color: #181818;
+            border: 1px solid #6c553f;
+            padding: 15px; /* Increase padding for a more modern look */
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .timer:hover {
+            background-color: #2e2e2e;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-color: #6c553f;
+        }
+        .timer-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .timer-display {
+            font-size: 20px;
+        }
+        .timer-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .start-button,
+        .reset-button {
+            background-color: #507664;
+            color: #fff;
+            border: none;
+            padding: 10px 20px; /* Increase padding for a more modern look */
+            margin-right: 10px; /* Add spacing between buttons */
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+        .start-button:hover,
+        .reset-button:hover {
+            background-color: #3a4f54;
+        }
     </style>
 </head>
 <body>
 <div class="timer-container">
-    <div class="timer" id="goblin-leader">
-        <div class="timer-name">Goblin Leader:</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="goblin-leader">Start</button>
-            <button class="reset-button" data-timer="goblin-leader">Reset</button>
-        </div>
+  <div class="timer" id="goblin-leader">
+    <div class="timer-name">Goblin Leader:</div>
+    <div class="timer-display"></div>
+    <div class="timer-controls">
+      <button class="start-button" data-timer="goblin-leader">Start</button>
+      <button class="reset-button" data-timer="goblin-leader">Reset</button>
     </div>
-    <div class="timer" id="troll">
-        <div class="timer-name">Troll:</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="troll">Start</button>
-            <button class="reset-button" data-timer="troll">Reset</button>
-        </div>
+  </div>
+  <div class="timer" id="troll">
+    <div class="timer-name">Troll:</div>
+    <div class="timer-display"></div>
+    <div class="timer-controls">
+      <button class="start-button" data-timer="troll">Start</button>
+      <button class="reset-button" data-timer="troll">Reset</button>
     </div>
-    <div class="timer" id="earth-elemental">
-        <div class="timer-name">Earth Elemental:</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="earth-elemental">Start</button>
-            <button class="reset-button" data-timer="earth-elemental">Reset</button>
-        </div>
+  </div>
+  <div class="timer" id="earth-elemental">
+    <div class="timer-name">Earth Elemental:</div>
+    <div class="timer-display"></div>
+    <div class="timer-controls">
+      <button class="start-button" data-timer="earth-elemental">Start</button>
+      <button class="reset-button" data-timer="earth-elemental">Reset</button>
     </div>
-    <div class="timer" id="dungeon-king">
-        <div class="timer-name">Dungeon King:</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="dungeon-king">Start</button>
-            <button class="reset-button" data-timer="dungeon-king">Reset</button>
-        </div>
+  </div>
+  <div class="timer" id="dungeon-king">
+    <div class="timer-name">Dungeon King:</div>
+    <div class="timer-display"></div>
+    <div class="timer-controls">
+      <button class="start-button" data-timer="dungeon-king">Start</button>
+      <button class="reset-button" data-timer="dungeon-king">Reset</button>
     </div>
-    <div class="timer" id="necromancer">
-        <div class="timer-name">Necromancer:</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="necromancer">Start</button>
-            <button class="reset-button" data-timer="necromancer">Reset</button>
-        </div>
+  </div>
+  <div class="timer" id="necromancer">
+    <div class="timer-name">Necromancer:</div>
+    <div class="timer-display"></div>
+    <div class="timer-controls">
+      <button class="start-button" data-timer="necromancer">Start</button>
+      <button class="reset-button" data-timer="necromancer">Reset</button>
     </div>
-    <div class="timer" id="uhr-rhaz">
-        <div class="timer-name">Uhr-Rhaz:</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="uhr-rhaz">Start</button>
-            <button class="reset-button" data-timer="uhr-rhaz">Reset</button>
-        </div>
+  </div>
+  <div class="timer" id="uhr-rhaz">
+    <div class="timer-name">Uhr-Rhaz:</div>
+    <div class="timer-display"></div>
+    <div class="timer-controls">
+      <button class="start-button" data-timer="uhr-rhaz">Start</button>
+      <button class="reset-button" data-timer="uhr-rhaz">Reset</button>
     </div>
-    <div class="timer" id="sharra">
-        <div class="timer-name">Sharra:</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="sharra">Start</button>
-            <button class="reset-button" data-timer="sharra">Reset</button>
-        </div>
+  </div>
+  <div class="timer" id="sharra">
+    <div class="timer-name">Sharra:</div>
+    <div class="timer-display"></div>
+    <div class="timer-controls">
+      <button class="start-button" data-timer="sharra">Start</button>
+      <button class="reset-button" data-timer="sharra">Reset</button>
     </div>
-    <div class="timer" id="raghor">
-        <div class="timer-name">Raghor:</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="raghor">Start</button>
-            <button class="reset-button" data-timer="raghor">Reset</button>
-        </div>
+  </div>
+  <div class="timer" id="raghor">
+    <div class="timer-name">Raghor:</div>
+    <div class="timer-display"></div>
+    <div class="timer-controls">
+      <button class="start-button" data-timer="raghor">Start</button>
+      <button class="reset-button" data-timer="raghor">Reset</button>
     </div>
-    <div class="timer" id="trollchief">
-        <div class="timer-name">Troll Warchief:</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="trollchief">Start</button>
-            <button class="reset-button" data-timer="trollchief">Reset</button>
-        </div>
+  </div>
+  <div class="timer" id="trollchief">
+    <div class="timer-name">Troll Warchief:</div>
+    <div class="timer-display"></div>
+    <div class="timer-controls">
+      <button class="start-button" data-timer="trollchief">Start</button>
+      <button class="reset-button" data-timer="trollchief">Reset</button>
     </div>
-    <div class="timer" id="sumbeor">
-        <div class="timer-name">Sumbeor:</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="sumbeor">Start</button>
-            <button class="reset-button" data-timer="sumbeor">Reset</button>
-        </div>
+  </div>
+  <div class="timer" id="sumbeor">
+    <div class="timer-name">Sumbeor:</div>
+    <div class="timer-display"></div>
+    <div class="timer-controls">
+      <button class="start-button" data-timer="sumbeor">Start</button>
+      <button class="reset-button" data-timer="sumbeor">Reset</button>
     </div>
+  </div>
 </div>
 
 <script>

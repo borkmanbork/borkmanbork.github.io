@@ -2,5 +2,8 @@
 Simple VIP boss timer.
 
 To add:
-- Easy way to change remaining time
+- Easier way to change remaining time
 - A toggle for NON-VIP timer
+
+Bugs:
+- Mobile Webpage isn't counting down right

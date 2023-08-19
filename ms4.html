@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timers Page</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .timer-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .timer {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+    }
+    .timer-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 5px;
+    }
+
+
+    </style>
+</head>
+<body>
+<div class="timer-container">
+    <div class="timer" id="goblin-leader">
+        <div class="timer-name">Goblin Leader:</div>
+        <div class="timer-display"></div>
+        <div class="timer-controls">
+            <button class="start-button" data-timer="goblin-leader">Start</button>
+            <button class="reset-button" data-timer="goblin-leader">Reset</button>
+        </div>
+    </div>
+    <div class="timer" id="troll">
+        <div class="timer-name">Troll:</div>
+        <div class="timer-display"></div>
+        <div class="timer-controls">
+            <button class="start-button" data-timer="troll">Start</button>
+            <button class="reset-button" data-timer="troll">Reset</button>
+        </div>
+    </div>
+    <div class="timer" id="earth-elemental">
+        <div class="timer-name">Earth Elemental:</div>
+        <div class="timer-display"></div>
+        <div class="timer-controls">
+            <button class="start-button" data-timer="earth-elemental">Start</button>
+            <button class="reset-button" data-timer="earth-elemental">Reset</button>
+        </div>
+    </div>
+    <div class="timer" id="dungeon-king">
+        <div class="timer-name">Dungeon King:</div>
+        <div class="timer-display"></div>
+        <div class="timer-controls">
+            <button class="start-button" data-timer="dungeon-king">Start</button>
+            <button class="reset-button" data-timer="dungeon-king">Reset</button>
+        </div>
+    </div>
+    <div class="timer" id="necromancer">
+        <div class="timer-name">Necromancer:</div>
+        <div class="timer-display"></div>
+        <div class="timer-controls">
+            <button class="start-button" data-timer="necromancer">Start</button>
+            <button class="reset-button" data-timer="necromancer">Reset</button>
+        </div>
+    </div>
+    <div class="timer" id="uhr-rhaz">
+        <div class="timer-name">Uhr-Rhaz:</div>
+        <div class="timer-display"></div>
+        <div class="timer-controls">
+            <button class="start-button" data-timer="uhr-rhaz">Start</button>
+            <button class="reset-button" data-timer="uhr-rhaz">Reset</button>
+        </div>
+    </div>
+    <div class="timer" id="sharra">
+        <div class="timer-name">Sharra:</div>
+        <div class="timer-display"></div>
+        <div class="timer-controls">
+            <button class="start-button" data-timer="sharra">Start</button>
+            <button class="reset-button" data-timer="sharra">Reset</button>
+        </div>
+    </div>
+    <div class="timer" id="raghor">
+        <div class="timer-name">Raghor:</div>
+        <div class="timer-display"></div>
+        <div class="timer-controls">
+            <button class="start-button" data-timer="raghor">Start</button>
+            <button class="reset-button" data-timer="raghor">Reset</button>
+        </div>
+    </div>
+    <div class="timer" id="trollchief">
+        <div class="timer-name">Troll Warchief:</div>
+        <div class="timer-display"></div>
+        <div class="timer-controls">
+            <button class="start-button" data-timer="trollchief">Start</button>
+            <button class="reset-button" data-timer="trollchief">Reset</button>
+        </div>
+    </div>
+    <div class="timer" id="sumbeor">
+        <div class="timer-name">Sumbeor:</div>
+        <div class="timer-display"></div>
+        <div class="timer-controls">
+            <button class="start-button" data-timer="sumbeor">Start</button>
+            <button class="reset-button" data-timer="sumbeor">Reset</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function startTimer(timerId, duration) {
+  const timerElement = document.getElementById(timerId);
+  const displayElement = timerElement.querySelector('.timer-display');
+  const startButton = timerElement.querySelector('.start-button');
+  const resetButton = timerElement.querySelector('.reset-button');
+  let timeRemaining = duration;
+  let interval;
+
+  function updateTimer() {
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+
+    displayElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+    if (timeRemaining <= 0) {
+      clearInterval(interval);
+      displayElement.textContent = 'Timer Expired';
+      startButton.disabled = false;
+    }
+
+    timeRemaining--;
+  }
+
+  updateTimer();
+  startButton.disabled = true;
+  resetButton.disabled = false;
+  interval = setInterval(updateTimer, 1000);
+
+  resetButton.addEventListener('click', function() {
+    clearInterval(interval);
+    displayElement.textContent = 'Timer Reset';
+    startButton.disabled = false;
+    resetButton.disabled = true;
+  });
+
+  // Store the interval ID for resetting
+  timerElement.intervals = interval;
+}
+
+document.querySelectorAll('.start-button').forEach(button => {
+  button.addEventListener('click', function() {
+    const timerId = this.getAttribute('data-timer');
+    const timerData = [
+      { id: 'goblin-leader', time: 2700 },
+      { id: 'troll', time: 5400 },
+      { id: 'earth-elemental', time: 8100 },
+      { id: 'dungeon-king', time: 13500 },
+      { id: 'necromancer', time: 16200 },
+      { id: 'uhr-rhaz', time: 900 },
+      { id: 'sharra', time: 1350 },
+      { id: 'raghor', time: 1350 },
+      { id: 'trollchief', time: 2700 },
+      { id: 'sumbeor', time: 13500 },
+    ];
+
+    const timer = timerData.find(item => item.id === timerId);
+    if (timer) {
+      startTimer(timer.id, timer.time);
+      this.disabled = true;
+    }
+  });
+});
+
+document.querySelectorAll('.reset-button').forEach(button => {
+  button.addEventListener('click', function() {
+    const timerId = this.getAttribute('data-timer');
+    const timerData = [
+      // Timer data here...
+    ];
+
+    const timer = timerData.find(item => item.id === timerId);
+    if (timer) {
+      clearInterval(timer.intervals);
+      const displayElement = document.getElementById(timerId).querySelector('.timer-display');
+      displayElement.textContent = 'Timer Reset';
+      const startButton = document.getElementById(timerId).querySelector('.start-button');
+      startButton.disabled = false;
+    }
+  });
+});
+
+
+</script>
+</body>
+</html>

@@ -40,10 +40,10 @@
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
-        /* Timer card hover styles */
-        .timer:hover {
-            background-color: #2e2e2e;
-        }
+            /* Timer card hover styles */
+            .timer:hover {
+                background-color: #2e2e2e;
+            }
 
         /* Timer name styles */
         .timer-name {
@@ -53,14 +53,14 @@
             transition: color 0.3s;
         }
 
-        /* Timer display styles */
+
         .timer-display {
             font-size: 24px;
             margin-top: 10px;
             transition: color 0.3s;
         }
 
-        /* Timer controls styles */
+
         .timer-controls {
             display: flex;
             justify-content: center;
@@ -68,7 +68,7 @@
             margin-top: 10px;
         }
 
-        /* Start and reset button styles */
+
         .start-button,
         .reset-button {
             background-color: #507664;
@@ -81,11 +81,11 @@
             transition: background-color 0.3s;
         }
 
-        /* Start and reset button hover styles */
-        .start-button:hover,
-        .reset-button:hover {
-            background-color: #3a4f54;
-        }
+            /* Start and reset button hover styles */
+            .start-button:hover,
+            .reset-button:hover {
+                background-color: #3a4f54;
+            }
 
         /* Modal styles */
         .modal {
@@ -114,19 +114,24 @@
             .timer {
                 width: calc(50% - 20px);
             }
+
             .timer-name {
                 font-size: 18px;
             }
+
             .timer-display {
                 font-size: 20px;
             }
+
             .timer-controls {
                 margin-top: 5px;
             }
+
             .start-button,
             .reset-button {
                 padding: 5px 10px;
             }
+
             .modal-content {
                 padding: 10px;
             }
@@ -139,12 +144,41 @@
             padding: 10px;
         }
 
-        .informative-message p {
+            .informative-message p {
+                color: #9e9e9e;
+                font-size: 14px;
+            }
+
+        .mode-toggle {
+            text-align: center;
+            margin: 15px 0;
             color: #9e9e9e;
-            font-size: 14px;
+            font-size: 16px;
         }
 
+        #vipToggle {
+            margin-left: 10px;
+        }
 
+        .toggle-button {
+            background-color: #507664;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .toggle-button.inactive {
+                background-color: #3a4f54;
+                color: #d2b48c;
+            }
+
+            .toggle-button.active {
+                background-color: #507664;
+                color: #d2b48c;
+            }
     </style>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -153,6 +187,10 @@
 <body>
 <div class="informative-message">
   <p>Click on the remaining time to change it</p>
+</div>
+<div class="mode-toggle">
+  <label for="vipToggle">Timer Mode:</label>
+  <button id="vipToggle" class="toggle-button inactive">F2P</button>
 </div>
 <div class="timer-container">
   <div class="timer" id="goblin-leader">
@@ -251,104 +289,149 @@
 </div>
 
 <script>
-    function startTimer(timerId, duration) {
-        const timerElement = document.getElementById(timerId);
-        const displayElement = timerElement.querySelector('.timer-display');
-        const startButton = timerElement.querySelector('.start-button');
-        const resetButton = timerElement.querySelector('.reset-button');
-        let timeRemaining = duration;
-        let interval;
+        document.addEventListener('DOMContentLoaded', (event) => {
 
-        function updateTimerDisplay() {
-            const hours = Math.floor(timeRemaining / 3600);
-            const minutes = Math.floor((timeRemaining % 3600) / 60);
-            const seconds = timeRemaining % 60;
+            const timerData = {
+                'goblin-leader': 3600,
+                'troll': 7200,
+                'earth-elemental': 10800,
+                'dungeon-king': 18000,
+                'necromancer': 21600,
+                'uhr-rhaz': 1200,
+                'sharra': 1800,
+                'raghor': 1800,
+                'trollchief': 3600,
+                'sumbeor': 18000
+            };
 
-            displayElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
+            const vipTimerData = {
+                'goblin-leader': 2700,
+                'troll': 5400,
+                'earth-elemental': 8100,
+                'dungeon-king': 13500,
+                'necromancer': 16200,
+                'uhr-rhaz': 900,
+                'sharra': 1350,
+                'raghor': 1350,
+                'trollchief': 2700,
+                'sumbeor': 13500
+            };
 
-        updateTimerDisplay();
-        startButton.disabled = true;
-        resetButton.disabled = false;
+            function initializeTimersWithDefaultValues(data) {
+                for (const timerId in data) {
+                    const timerElement = document.getElementById(timerId);
+                    const displayElement = timerElement.querySelector('.timer-display');
+                    const hours = Math.floor(data[timerId] / 3600);
+                    const minutes = Math.floor((data[timerId] % 3600) / 60);
+                    const seconds = data[timerId] % 60;
 
-        interval = setInterval(function() {
-            if (timeRemaining <= 0) {
-                clearInterval(interval);
-                displayElement.textContent = 'Spawned!';
-                startButton.disabled = false;
-            } else {
-                timeRemaining--;
-                updateTimerDisplay();
-            }
-        }, 1000);
-
-        resetButton.addEventListener('click', function() {
-            clearInterval(interval);
-            displayElement.textContent = 'Timer Reset';
-            startButton.disabled = false;
-            resetButton.disabled = true;
-        });
-
-        timerElement.interval = interval;
-    }
-
-    document.querySelectorAll('.start-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const timerId = this.getAttribute('data-timer');
-            const timerData = [
-              { id: 'goblin-leader', time: 2700 },
-              { id: 'troll', time: 5400 },
-              { id: 'earth-elemental', time: 8100 },
-              { id: 'dungeon-king', time: 13500 },
-              { id: 'necromancer', time: 16200 },
-              { id: 'uhr-rhaz', time: 900 },
-              { id: 'sharra', time: 1350 },
-              { id: 'raghor', time: 1350 },
-              { id: 'trollchief', time: 2700 },
-              { id: 'sumbeor', time: 13500 },
-            ];
-            const timer = timerData.find(t => t.id === timerId);
-            if (timer) {
-                startTimer(timer.id, timer.time);
-            }
-        });
-    });
-
-    document.querySelectorAll('.reset-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const timerId = this.getAttribute('data-timer');
-            const timerElement = document.getElementById(timerId);
-            const displayElement = timerElement.querySelector('.timer-display');
-            clearInterval(timerElement.interval);
-            displayElement.textContent = 'Timer Reset';
-            const startButton = timerElement.querySelector('.start-button');
-            startButton.disabled = false;
-        });
-    });
-
-    document.querySelectorAll('.timer-display').forEach(displayElement => {
-        displayElement.addEventListener('click', function() {
-            const timerElement = this.closest('.timer');
-            const displayText = this.textContent;
-            const timeParts = displayText.split(':');
-            const hours = parseInt(timeParts[0]);
-            const minutes = parseInt(timeParts[1]);
-            const seconds = parseInt(timeParts[2]);
-
-            const newHours = prompt('Enter new hours:', hours);
-            const newMinutes = prompt('Enter new minutes:', minutes);
-            const newSeconds = prompt('Enter new seconds:', seconds);
-
-            if (newHours !== null && newMinutes !== null && newSeconds !== null) {
-                const newTimeRemaining = (parseInt(newHours) * 3600) + (parseInt(newMinutes) * 60) + parseInt(newSeconds);
-                if (!isNaN(newTimeRemaining)) {
-                    clearInterval(timerElement.interval);
-                    startTimer(timerElement.id, newTimeRemaining);
+                    displayElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 }
             }
+
+            function formatTime(seconds) {
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const remainingSeconds = seconds % 60;
+
+                return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+            }
+
+            function startTimer(timerId, duration) {
+                const timerElement = document.getElementById(timerId);
+                const displayElement = timerElement.querySelector('.timer-display');
+
+                if (timerElement.interval) {
+                    clearInterval(timerElement.interval);
+                }
+
+                let remainingTime = duration;
+                displayElement.textContent = formatTime(remainingTime);
+
+                timerElement.interval = setInterval(() => {
+                    remainingTime -= 1;
+
+                    if (remainingTime < 0) {
+                        clearInterval(timerElement.interval);
+                        displayElement.textContent = "Spawned!";
+                    } else {
+                        displayElement.textContent = formatTime(remainingTime);
+                    }
+                }, 1000);
+            }
+
+            document.querySelectorAll('.start-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    const timerId = this.getAttribute('data-timer');
+                    const vipToggle = document.getElementById('vipToggle');
+
+
+                    const currentTimerData = vipToggle.classList.contains('active') ? vipTimerData : timerData;
+
+                    if (currentTimerData[timerId]) {
+                        startTimer(timerId, currentTimerData[timerId]);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.reset-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    const timerId = this.getAttribute('data-timer');
+                    const timerElement = document.getElementById(timerId);
+                    const displayElement = timerElement.querySelector('.timer-display');
+                    clearInterval(timerElement.interval);
+                    displayElement.textContent = 'Timer Reset';
+                    const startButton = timerElement.querySelector('.start-button');
+                    startButton.disabled = false;
+                });
+            });
+
+            // Toggle Event for VIP
+            document.getElementById('vipToggle').addEventListener('click', function () {
+                if (this.classList.contains('inactive')) {
+                    this.classList.remove('inactive');
+                    this.classList.add('active');
+                    this.textContent = "VIP";
+                    initializeTimersWithDefaultValues(vipTimerData);
+                } else {
+                    this.classList.remove('active');
+                    this.classList.add('inactive');
+                    this.textContent = "F2P";
+                    initializeTimersWithDefaultValues(timerData);
+                }
+            });
+
+            document.querySelectorAll('.timer-display').forEach(displayElement => {
+                displayElement.addEventListener('click', function () {
+                    const timerElement = this.closest('.timer');
+                    const displayText = this.textContent;
+                    const timeParts = displayText.split(':');
+                    const hours = parseInt(timeParts[0]);
+                    const minutes = parseInt(timeParts[1]);
+                    const seconds = parseInt(timeParts[2]);
+
+                    const newHours = prompt('Enter new hours:', hours);
+                    const newMinutes = prompt('Enter new minutes:', minutes);
+                    const newSeconds = prompt('Enter new seconds:', seconds);
+
+                    if (newHours !== null && newMinutes !== null && newSeconds !== null) {
+                        const newTimeRemaining = (parseInt(newHours) * 3600) + (parseInt(newMinutes) * 60) + parseInt(newSeconds);
+                        if (!isNaN(newTimeRemaining)) {
+                            clearInterval(timerElement.interval);
+                            startTimer(timerElement.id, newTimeRemaining);
+                        }
+                    }
+                });
+            });
+
+            // Initialize timers with the default values.
+            initializeTimersWithDefaultValues(timerData);
+
         });
-    });
-</script>
+
+
+    </script>
+
 </body>
 
 </html>

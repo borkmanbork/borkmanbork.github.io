@@ -190,111 +190,111 @@
 </head>
 
 <body>
-<div class="informative-message">
-    <p>Adjust the remaining time by interacting with the timer duration once it has been started.</p>
-    <p>Mobile version broken, will fix tomorrow!</p>
-</div>
-<div class="mode-toggle">
-    <label for="vipToggle">Timer Mode:</label>
-    <button id="vipToggle" class="toggle-button inactive">F2P</button>
-</div>
-<div class="timer-container">
-    <div class="timer" id="goblin-leader">
-        <div class="timer-name">Goblin Leader</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="goblin-leader">Start</button>
-            <button class="reset-button" data-timer="goblin-leader">Reset</button>
+    <div class="informative-message">
+        <p>Click on the remaining time to change it</p>
+        <p>Mobile version broken, will fix tomorrow!</p>
+    </div>
+    <div class="mode-toggle">
+        <label for="vipToggle">Timer Mode:</label>
+        <button id="vipToggle" class="toggle-button inactive">F2P</button>
+    </div>
+    <div class="timer-container">
+        <div class="timer" id="goblin-leader">
+            <div class="timer-name">Goblin Leader</div>
+            <div class="timer-display"></div>
+            <div class="timer-controls">
+                <button class="start-button" data-timer="goblin-leader">Start</button>
+                <button class="reset-button" data-timer="goblin-leader">Reset</button>
+            </div>
+        </div>
+        <div class="timer" id="troll">
+            <div class="timer-name">Troll</div>
+            <div class="timer-display"></div>
+            <div class="timer-controls">
+                <button class="start-button" data-timer="troll">Start</button>
+                <button class="reset-button" data-timer="troll">Reset</button>
+            </div>
+        </div>
+        <div class="timer" id="earth-elemental">
+            <div class="timer-name">Earth Elemental</div>
+            <div class="timer-display"></div>
+            <div class="timer-controls">
+                <button class="start-button" data-timer="earth-elemental">Start</button>
+                <button class="reset-button" data-timer="earth-elemental">Reset</button>
+            </div>
+        </div>
+        <div class="timer" id="dungeon-king">
+            <div class="timer-name">Dungeon King</div>
+            <div class="timer-display"></div>
+            <div class="timer-controls">
+                <button class="start-button" data-timer="dungeon-king">Start</button>
+                <button class="reset-button" data-timer="dungeon-king">Reset</button>
+            </div>
+        </div>
+        <div class="timer" id="necromancer">
+            <div class="timer-name">Necromancer</div>
+            <div class="timer-display"></div>
+            <div class="timer-controls">
+                <button class="start-button" data-timer="necromancer">Start</button>
+                <button class="reset-button" data-timer="necromancer">Reset</button>
+            </div>
+        </div>
+        <div class="timer" id="uhr-rhaz">
+            <div class="timer-name">Uhr-Rhaz</div>
+            <div class="timer-display"></div>
+            <div class="timer-controls">
+                <button class="start-button" data-timer="uhr-rhaz">Start</button>
+                <button class="reset-button" data-timer="uhr-rhaz">Reset</button>
+            </div>
+        </div>
+        <div class="timer" id="sharra">
+            <div class="timer-name">Sharra</div>
+            <div class="timer-display"></div>
+            <div class="timer-controls">
+                <button class="start-button" data-timer="sharra">Start</button>
+                <button class="reset-button" data-timer="sharra">Reset</button>
+            </div>
+        </div>
+        <div class="timer" id="raghor">
+            <div class="timer-name">Raghor</div>
+            <div class="timer-display"></div>
+            <div class="timer-controls">
+                <button class="start-button" data-timer="raghor">Start</button>
+                <button class="reset-button" data-timer="raghor">Reset</button>
+            </div>
+        </div>
+        <div class="timer" id="trollchief">
+            <div class="timer-name">Troll Warchief</div>
+            <div class="timer-display"></div>
+            <div class="timer-controls">
+                <button class="start-button" data-timer="trollchief">Start</button>
+                <button class="reset-button" data-timer="trollchief">Reset</button>
+            </div>
+        </div>
+        <div class="timer" id="sumbeor">
+            <div class="timer-name">Sumbeor</div>
+            <div class="timer-display"></div>
+            <div class="timer-controls">
+                <button class="start-button" data-timer="sumbeor">Start</button>
+                <button class="reset-button" data-timer="sumbeor">Reset</button>
+            </div>
         </div>
     </div>
-    <div class="timer" id="troll">
-        <div class="timer-name">Troll</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="troll">Start</button>
-            <button class="reset-button" data-timer="troll">Reset</button>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Set New Timer</h2>
+            <label for="newHours">Hours:</label>
+            <input type="number" id="newHours" min="0" max="99" step="1" value="0">
+            <label for="newMinutes">Minutes:</label>
+            <input type="number" id="newMinutes" min="0" max="59" step="1" value="0">
+            <label for="newSeconds">Seconds:</label>
+            <input type="number" id="newSeconds" min="0" max="59" step="1" value="0">
+            <button id="confirmButton">Confirm</button>
+            <button id="cancelButton">Cancel</button>
         </div>
     </div>
-    <div class="timer" id="earth-elemental">
-        <div class="timer-name">Earth Elemental</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="earth-elemental">Start</button>
-            <button class="reset-button" data-timer="earth-elemental">Reset</button>
-        </div>
-    </div>
-    <div class="timer" id="dungeon-king">
-        <div class="timer-name">Dungeon King</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="dungeon-king">Start</button>
-            <button class="reset-button" data-timer="dungeon-king">Reset</button>
-        </div>
-    </div>
-    <div class="timer" id="necromancer">
-        <div class="timer-name">Necromancer</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="necromancer">Start</button>
-            <button class="reset-button" data-timer="necromancer">Reset</button>
-        </div>
-    </div>
-    <div class="timer" id="uhr-rhaz">
-        <div class="timer-name">Uhr-Rhaz</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="uhr-rhaz">Start</button>
-            <button class="reset-button" data-timer="uhr-rhaz">Reset</button>
-        </div>
-    </div>
-    <div class="timer" id="sharra">
-        <div class="timer-name">Sharra</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="sharra">Start</button>
-            <button class="reset-button" data-timer="sharra">Reset</button>
-        </div>
-    </div>
-    <div class="timer" id="raghor">
-        <div class="timer-name">Raghor</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="raghor">Start</button>
-            <button class="reset-button" data-timer="raghor">Reset</button>
-        </div>
-    </div>
-    <div class="timer" id="trollchief">
-        <div class="timer-name">Troll Warchief</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="trollchief">Start</button>
-            <button class="reset-button" data-timer="trollchief">Reset</button>
-        </div>
-    </div>
-    <div class="timer" id="sumbeor">
-        <div class="timer-name">Sumbeor</div>
-        <div class="timer-display"></div>
-        <div class="timer-controls">
-            <button class="start-button" data-timer="sumbeor">Start</button>
-            <button class="reset-button" data-timer="sumbeor">Reset</button>
-        </div>
-    </div>
-</div>
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <h2>Set New Timer</h2>
-        <label for="newHours">Hours:</label>
-        <input type="number" id="newHours" min="0" max="99" step="1" value="0">
-        <label for="newMinutes">Minutes:</label>
-        <input type="number" id="newMinutes" min="0" max="59" step="1" value="0">
-        <label for="newSeconds">Seconds:</label>
-        <input type="number" id="newSeconds" min="0" max="59" step="1" value="0">
-        <button id="confirmButton">Confirm</button>
-        <button id="cancelButton">Cancel</button>
-    </div>
-</div>
 
-<script>
+    <script>
         document.addEventListener('DOMContentLoaded', (event) => {
 
             const timerData = {
@@ -327,19 +327,11 @@
                 for (const timerId in data) {
                     const timerElement = document.getElementById(timerId);
                     const displayElement = timerElement.querySelector('.timer-display');
+                    const hours = Math.floor(data[timerId] / 3600);
+                    const minutes = Math.floor((data[timerId] % 3600) / 60);
+                    const seconds = data[timerId] % 60;
 
-                    // Retrieve remaining time from localStorage if available
-                    const savedRemainingTime = localStorage.getItem(timerId);
-
-                    if (savedRemainingTime) {
-                        displayElement.textContent = formatTime(parseInt(savedRemainingTime)); // Parse as integer
-                    } else {
-                        const hours = Math.floor(data[timerId] / 3600);
-                        const minutes = Math.floor((data[timerId] % 3600) / 60);
-                        const seconds = data[timerId] % 60;
-
-                        displayElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                    }
+                    displayElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 }
             }
 
@@ -350,7 +342,6 @@
 
                 return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
             }
-
             function startTimer(timerId, duration) {
                 const timerElement = document.getElementById(timerId);
                 const displayElement = timerElement.querySelector('.timer-display');
@@ -359,13 +350,15 @@
                     clearInterval(timerElement.interval);
                 }
 
-                let remainingTime = duration;
-                displayElement.textContent = formatTime(remainingTime);
+                const endTime = Date.now() + (duration * 1000);
+                displayElement.textContent = formatTime(duration);
 
                 displayElement.classList.remove('spawned');
 
                 timerElement.interval = setInterval(() => {
-                    remainingTime -= 1;
+                    const currentTime = Date.now();
+                    const diff = endTime - currentTime;
+                    const remainingTime = Math.floor(diff / 1000);
 
                     if (remainingTime < 0) {
                         clearInterval(timerElement.interval);
@@ -374,9 +367,6 @@
                     } else {
                         displayElement.textContent = formatTime(remainingTime);
                     }
-
-                    // Store remaining time in localStorage
-                    localStorage.setItem(timerId, remainingTime.toString()); // Convert to string
                 }, 1000);
             }
 
@@ -449,7 +439,6 @@
             });
             // Initialize timers with the default values.
             initializeTimersWithDefaultValues(timerData);
-            initializeTimersWithDefaultValues(vipTimerData); // If needed
 
         });
 
